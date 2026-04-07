@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="heb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia & Klim • 12.08.2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --gold: #d4af77;
+            --soft-pink: #f8e9e0;
+            --dark: #2c1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #2c1e1e 0%, #3d2a2a 100%);
+            color: #f8e9e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* ==================== НАВИГАЦИЯ ==================== */
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44, 30, 30, 0.95);
+            padding: 8px 12px;
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            display: flex;
+            gap: 6px;
+            flex-wrap: nowrap;
+            max-width: 95%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: #f8e9e0;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        nav a:hover {
+            background: rgba(212, 175, 119, 0.25);
+            color: var(--gold);
+        }
+
+        /* Выделяем кнопку "לאשר" */
+        nav a:last-child {
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 9px 22px;
+            box-shadow: 0 4px 15px rgba(212, 175, 119, 0.4);
+        }
+
+        nav a:last-child:hover {
+            background: #e5c38a;
+            transform: scale(1.06);
+        }
+
+        /* ==================== ГЕРОЙ ==================== */
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+            background: linear-gradient(rgba(44, 30, 30, 0.75), rgba(44, 30, 30, 0.75)),
+                        url('https://via.placeholder.com/1920x1080/3d2a2a/f8e9e0?text=Фото+свадьбы') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 92%;
+            padding: 2rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 5.6rem;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+            line-height: 1;
+        }
+
+        .hero .date {
+            font-size: 1.55rem;
+            color: var(--soft-pink);
+            margin-bottom: 1.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 14px 40px;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== МОБИЛЬНАЯ АДАПТАЦИЯ ==================== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.8rem; }
+            .hero .date { font-size: 1.4rem; }
+            nav { 
+                padding: 7px 10px; 
+                gap: 5px; 
+                top: 12px;
+            }
+            nav a { 
+                padding: 8px 14px; 
+                font-size: 0.9rem; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 3.25rem; }
+            nav a { font-size: 0.87rem; padding: 7px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">עמוד ראשי</a>
+        <a href="#story">ההיסטוריה שלנו</a>
+        <a href="#details">איפה ומתי</a>
+        <a href="#rsvp">לאשר</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sofia &amp; Klim</h1>
+            <p class="date">12.08.26 • בני ראם, ישראל, אולם נסיה</p>
+            <p style="font-size: 1.3rem; margin-bottom: 2.2rem; max-width: 620px; margin-left: auto; margin-right: auto;">
+                🥰!אנחנו שמחים להזמין אתכם לאירוע המרגש והייחודי שלנו, נשמח לראות את כולם
+            </p>
+            <a href="#details" class="btn">לראות את ההזמנה ↓</a>
+        </div>
+    </section>
+
+    <section id="story" class="section">
+        <h2 style="text-align:center; font-size:4.2rem; margin-bottom:2rem; color:#d4af77;">ההיסטוריה שלנו</h2>
+        <p style="max-width:700px; margin:0 auto; font-size:1.15rem; text-align:center; line-height:1.7;">
+            פגשתי אותה לראשונה בחוף הים, זה היה מפגש שלא ציפיתי ולא בניתי אליו כלום, הלכנו לסנוקר(זה לא המקום שעושים בו דייט ראשון), והיא זרמה עם זה, ושם התאהבתי בה, בחורה שזורמת עם השטויות שלי, שהיא קלילה ובאותה נשימה מרגשת אותי. זן אהבה אמיתית
+        </p>
+    </section>
+
+    <section id="details" class="section" style="background:#2c1e1e;">
+        <h2 style="text-align:center; font-size:4.2rem; margin-bottom:3rem; color:#d4af77;">?איפה ומתי</h2>
+    </section>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        sections.forEach(section => observer.observe(section));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+ <!-- ==================== ФОРМА RSVP + ОТПРАВКА В GOOGLE ТАБЛИЦУ ==================== -->
+<div id="rsvpModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        
+        <!-- Шаг 1 -->
+        <div id="step1" class="step">
+            <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">לאשר הגעה</h2>
+            <input type="text" id="guestName" placeholder="שם מלא (שם + שם משפחה)" required>
+            <div class="options">
+                <button type="button" class="option-btn" data-value="בטוח אגיע">בטוח אגיע 😊</button>
+                <button type="button" class="option-btn" data-value="עדיין חושב/ת">עדיין חושב/ת 🤔</button>
+                <button type="button" class="option-btn" data-value="לא אגיע">לא אגיע 😔</button>
+            </div>
+            <button onclick="nextStep(1)" class="submit-btn">המשך</button>
+        </div>
+
+        <!-- Шаг 2: Питание -->
+        <div id="step2" class="step" style="display: none;">
+            <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">העדפות אוכל</h2>
+            <div class="options">
+                <button type="button" class="option-btn" data-value="צמחוני">אני צמחוני 🥕</button>
+                <button type="button" class="option-btn" data-value="טבעוני">אני טבעוני 🌱</button>
+                <button type="button" class="option-btn" data-value="אוכל הכל">לא תפריע לי שום דבר – אני אוכל הכל 😋</button>
+            </div>
+            <button onclick="nextStep(2)" class="submit-btn">המשך</button>
+        </div>
+
+        <!-- Шаг 3: Транспорт -->
+        <div id="step3" class="step" style="display: none;">
+            <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">איך תגיע?</h2>
+            <div class="options">
+                <button type="button" class="option-btn" data-value="עצמאית">אני מגיע עצמאית 🚗</button>
+                <button type="button" class="option-btn" data-value="הסעה" id="shuttleBtn">אני נוסע בהסעה 🚌</button>
+            </div>
+            
+            <div id="shuttleInfo" style="display: none; margin-top: 25px; padding: 18px; background: rgba(212,175,119,0.15); border-radius: 12px; border: 1px solid var(--gold); font-size: 1.05rem; line-height: 1.6;">
+                <strong>הסעה יוצאת ממרכבים</strong><br>
+                בשעה <strong>19:00</strong><br>
+                <span style="color: #ffcc80;">לא לאחר!</span>
+            </div>
+            
+            <button onclick="submitRSVP()" class="submit-btn" style="margin-top: 30px;">שלח תשובה</button>
+        </div>
+    </div>
+</div>
+
+<!-- Окно Спасибо -->
+<div id="thankYouModal" class="modal">
+    <div class="modal-content thank-you">
+        <h2 style="color: var(--gold); font-size: 2.8rem; margin-bottom: 1rem;">תודה רבה! ❤️</h2>
+        <p style="font-size: 1.4rem; line-height: 1.6;">התשובה שלך התקבלה בהצלחה.<br>מחכים לראות אותך בחתונה!</p>
+        <button onclick="closeThankYou()" class="submit-btn" style="margin-top: 2rem;">סגור</button>
+    </div>
+</div>
+
+<style>
+    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; }
+    .modal-content { background: #2c1e1e; padding: 2.5rem 2rem; border-radius: 20px; width: 92%; max-width: 440px; text-align: center; border: 1px solid var(--gold); position: relative; }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2.2rem; color: #aaa; cursor: pointer; }
+    input[type="text"] { width: 100%; padding: 15px; margin: 15px 0 25px 0; border: 1px solid var(--gold); border-radius: 12px; background: #3d2a2a; color: white; font-size: 1.15rem; }
+    .options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0 30px 0; }
+    .option-btn { padding: 15px; border: 2px solid var(--gold); background: transparent; color: var(--gold); border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; }
+    .option-btn.active, .option-btn:hover { background: var(--gold); color: var(--dark); }
+    .submit-btn { width: 100%; padding: 16px; background: var(--gold); color: var(--dark); border: none; border-radius: 12px; font-size: 1.2rem; font-weight: 500; cursor: pointer; }
+    .thank-you { border-color: #4ade80; }
+</style>
+
+<script>
+// ==================== ДАННЫЕ ФОРМЫ ====================
+let rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+
+// Открытие формы
+document.querySelector('nav a:last-child').addEventListener('click', function(e) {
+    e.preventDefault();
+    resetForm();
+    document.getElementById('rsvpModal').style.display = 'flex';
+    document.getElementById('step1').style.display = 'block';
+});
+
+function nextStep(step) {
+    if (step === 1) {
+        const name = document.getElementById('guestName').value.trim();
+        const selected = document.querySelector('#step1 .option-btn.active');
+        if (!name || !selected) { alert('אנא מלא את השם ואת הבחירה'); return; }
+        rsvpData.name = name;
+        rsvpData.attendance = selected.dataset.value;
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    } else if (step === 2) {
+        const selectedDiet = document.querySelector('#step2 .option-btn.active');
+        if (!selectedDiet) { alert('אנא בחר העדפת אוכל'); return; }
+        rsvpData.diet = selectedDiet.dataset.value;
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step3').style.display = 'block';
+    }
+}
+
+// Выбор вариантов
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('option-btn')) {
+        const parent = e.target.closest('.options');
+        if (parent) {
+            parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+    }
+});
+
+// Показ информации про подвозку
+document.getElementById('shuttleBtn').addEventListener('click', function() {
+    document.getElementById('shuttleInfo').style.display = 'block';
+});
+
+function submitRSVP() {
+    const selectedTransport = document.querySelector('#step3 .option-btn.active');
+    if (!selectedTransport) { alert('אנא בחר איך תגיע'); return; }
+    
+    rsvpData.transport = selectedTransport.dataset.value;
+
+    // === ОТПРАВКА В ТАБЛИЦУ ===
+    sendToGoogleSheets(rsvpData);
+
+    closeModal();
+    document.getElementById('thankYouModal').style.display = 'flex';
+}
+
+// Функция отправки
+function sendToGoogleSheets(data) {
+    const scriptURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQHi_xGemTc-ryjZvATYTL-whCYF1UXyQ34wIhTOxeX3PRSftX5gHflZaSXdqQDPcUeDgHwSVemPpPm/pubhtml" ; 
+
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).catch(err => console.log('Ошибка отправки:', err));
+}
+
+function closeModal() { document.getElementById('rsvpModal').style.display = 'none'; }
+function closeThankYou() { document.getElementById('thankYouModal').style.display = 'none'; }
+
+function resetForm() {
+    rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+    document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('guestName').value = '';
+    document.getElementById('shuttleInfo').style.display = 'none';
+}
+</script>
