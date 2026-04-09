@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="heb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia & Klim • 12.08.2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --gold: #d4af77;
+            --soft-pink: #f8e9e0;
+            --dark: #342626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #342626 0%, #3d2f2f 100%);
+            color: #f8e9e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2 { font-family: 'Great Vibes', cursive; }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(52, 38, 38, 0.95);
+            padding: 7px 10px;
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            display: flex;
+            gap: 4px;
+            max-width: 95%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: #f8e9e0;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.93rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover { background: rgba(212, 175, 119, 0.25); color: var(--gold); }
+
+        nav a:last-child {
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+
+        /* Главный экран — очищенный по твоему скриншоту */
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+            background: linear-gradient(rgba(52, 38, 38, 0.65), rgba(52, 38, 38, 0.75)),
+                        url('https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-09%20at%2014.26.11.jpeg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero .date {
+            font-size: 2.6rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: 5.4rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 45px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 1.18rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 119, 0.4);
+            transition: all 0.4s ease;
+        }
+        .btn:hover { background: #e5c38a; transform: scale(1.05); }
+
+        section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+
+        .section { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Галерея — 2 колонки */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 50px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            padding: 16px 12px;
+            text-align: center;
+            color: #2c1e1e;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* Форма RSVP */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.88); 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .modal-content { 
+            background: #2c1e1e; 
+            padding: 2.5rem 2rem; 
+            border-radius: 20px; 
+            width: 92%; 
+            max-width: 440px; 
+            text-align: center; 
+            border: 1px solid var(--gold); 
+            position: relative; 
+        }
+
+        .close-btn { 
+            position: absolute; 
+            top: 15px; 
+            right: 20px; 
+            font-size: 2.2rem; 
+            color: #aaa; 
+            cursor: pointer; 
+        }
+
+        input[type="text"] { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 15px 0 25px 0; 
+            border: 1px solid var(--gold); 
+            border-radius: 12px; 
+            background: #3d2a2a; 
+            color: white; 
+            font-size: 1.15rem; 
+        }
+
+        .options { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            margin: 20px 0 30px 0; 
+        }
+
+        .option-btn { 
+            padding: 15px; 
+            border: 2px solid var(--gold); 
+            background: transparent; 
+            color: var(--gold); 
+            border-radius: 12px; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+        }
+
+        .option-btn.active, .option-btn:hover { 
+            background: var(--gold); 
+            color: var(--dark); 
+        }
+
+        .submit-btn { 
+            width: 100%; 
+            padding: 16px; 
+            background: var(--gold); 
+            color: var(--dark); 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 1.2rem; 
+            font-weight: 500; 
+            cursor: pointer; 
+        }
+
+        .thank-you { border-color: #4ade80; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.9rem; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .photo-card img { height: 200px; }
+            nav { padding: 6px 8px; gap: 3px; top: 12px; }
+            nav a { padding: 7px 12px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">עמוד ראשי</a>
+        <a href="#story">ההיסטוריה שלנו</a>
+        <a href="#details">איפה ומתי</a>
+        <a href="#rsvp" id="nav-rsvp">לאשר</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="date">12.08.2026</p>
+            <h1>Sofia &amp; Klim</h1>
+            <p style="font-size: 1.28rem; max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.5;">
+                משפחה וחברים יקרים!<br>
+                אנחנו שמחים להזמין אתכם לאירוע המרגש שלנו!<br>
+                נשמח לראות את כל אחד ואחת ביום המיוחד הזה ❤️
+            </p>
+            <a href="#details" class="btn">לראות את ההזמנה ↓</a>
+        </div>
+    </section>
+
+    <section id="story" class="section">
+        <h2 style="text-align:center; font-size:4.2rem; margin-bottom:2.5rem; color:#d4af77;">ההיסטוריה שלנו</h2>
+        
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/%D0%B3%D0%B0%D1%80%D1%80%D0%B9%20%D0%A4%D0%BE%D1%82%D1%82%D0%B5%D1%80.jpeg" alt="">
+                <div class="photo-caption">תחילת הקשר</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.29.jpeg" alt="">
+                <div class="photo-caption">מלחמה</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.29%20(1).jpeg" alt="">
+                <div class="photo-caption">דוגמנים</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.30%20(1).jpeg" alt="">
+                <div class="photo-caption">Long-distance relationships</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.30%20(2).jpeg" alt="">
+                <div class="photo-caption">אוגוסט 2025</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2023.34.39.jpeg" alt="">
+                <div class="photo-caption">ועוד קצת</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.30%20(3).jpeg" alt="">
+                <div class="photo-caption">יום מיוחד</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2023.34.30.jpeg" alt="">
+                <div class="photo-caption">עוגת ברוכים השבים</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2023.34.31.jpeg" alt="">
+                <div class="photo-caption">עוד קצת מהיום שהיא חזרה</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/WhatsApp%20Image%202026-04-08%20at%2022.32.30%20(4).jpeg" alt="">
+                <div class="photo-caption">קצת תמונות במראה</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="section">
+        <h2 style="text-align:center; font-size:4.2rem; margin-bottom:2rem; color:#d4af77;">איפה ומתי</h2>
+        <p style="font-size: 1.35rem; max-width: 700px; margin: 0 auto 30px;">
+            12.08.2026 • בני ראם, ישראל<br>
+            אולם נסיה
+        </p>
+
+        <div class="map-container">
+            <iframe width="100%" height="420" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.123!2d34.XXXXXX!3d32.XXXXXX!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAwJzAwLjAiTiAzNcKwMDAnMDAuMCJF!5e0!3m2!1sen!2sil!4v123456789" 
+                style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <a href="https://waze.com/ul?ll=32.XXXXXX,34.XXXXXX&navigate=yes" 
+           class="waze-btn" target="_blank">פתח ב-Waze</a>
+    </section>
+
+    <!-- Дополнительная кнопка לאשר הגעה внизу -->
+    <div style="text-align: center; padding: 60px 20px; background: #2c1e1e;">
+        <a onclick="document.getElementById('rsvpModal').style.display='flex'; document.getElementById('step1').style.display='block'; return false;" 
+           class="btn" style="background: var(--gold); color: var(--dark);">לאשר הגעה</a>
+    </div>
+
+    <!-- Форма RSVP -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            
+            <div id="step1" class="step">
+                <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">לאשר הגעה</h2>
+                <input type="text" id="guestName" placeholder="שם מלא (שם + שם משפחה)" required>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="בטוח אגיע">בטוח אגיע 😊</button>
+                    <button type="button" class="option-btn" data-value="עדיין חושב/ת">עדיין חושב/ת 🤔</button>
+                    <button type="button" class="option-btn" data-value="לא אגיע">לא אגיע 😔</button>
+                </div>
+                <button onclick="nextStep(1)" class="submit-btn">המשך</button>
+            </div>
+
+            <div id="step2" class="step" style="display: none;">
+                <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">העדפות אוכל</h2>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="צמחוני">אני צמחוני 🥕</button>
+                    <button type="button" class="option-btn" data-value="טבעוני">אני טבעוני 🌱</button>
+                    <button type="button" class="option-btn" data-value="אוכל הכל">לא תפריע לי שום דבר – אני אוכל הכל 😋</button>
+                </div>
+                <button onclick="nextStep(2)" class="submit-btn">המשך</button>
+            </div>
+
+            <div id="step3" class="step" style="display: none;">
+                <h2 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem;">איך תגיע?</h2>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="עצמאית">אני מגיע עצמאית 🚗</button>
+                    <button type="button" class="option-btn" data-value="הסעה" id="shuttleBtn">אני נוסע בהסעה 🚌</button>
+                </div>
+                
+                <div id="shuttleInfo" style="display: none; margin-top: 25px; padding: 18px; background: rgba(212,175,119,0.15); border-radius: 12px; border: 1px solid var(--gold); font-size: 1.05rem; line-height: 1.6;">
+                    <strong>הסעה יוצאת ממרכבים</strong><br>
+                    בשעה <strong>19:00</strong><br>
+                    <span style="color: #ffcc80;">לא לאחר!</span>
+                </div>
+                
+                <button onclick="submitRSVP()" class="submit-btn" style="margin-top: 30px;">שלח תשובה</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content thank-you">
+            <h2 style="color: var(--gold); font-size: 2.8rem; margin-bottom: 1rem;">תודה רבה! ❤️</h2>
+            <p style="font-size: 1.4rem; line-height: 1.6;">התשובה שלך התקבלה בהצלחה.<br>מחכים לראות אותך בחתונה!</p>
+            <button onclick="closeThankYou()" class="submit-btn" style="margin-top: 2rem;">סגור</button>
+        </div>
+    </div>
+
+    <script>
+        let rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+
+        // Кнопка в шапке — только скроллит вниз
+        document.getElementById('nav-rsvp').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('rsvpModal').style.display = 'none';
+            window.scrollTo({
+                top: document.getElementById('details').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        function nextStep(step) {
+            if (step === 1) {
+                const name = document.getElementById('guestName').value.trim();
+                const selected = document.querySelector('#step1 .option-btn.active');
+                if (!name || !selected) { alert('אנא מלא את השם ואת הבחירה'); return; }
+                rsvpData.name = name;
+                rsvpData.attendance = selected.dataset.value;
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+            } else if (step === 2) {
+                const selectedDiet = document.querySelector('#step2 .option-btn.active');
+                if (!selectedDiet) { alert('אנא בחר העדפת אוכל'); return; }
+                rsvpData.diet = selectedDiet.dataset.value;
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option-btn')) {
+                const parent = e.target.closest('.options');
+                if (parent) {
+                    parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            }
+        });
+
+        document.getElementById('shuttleBtn').addEventListener('click', function() {
+            document.getElementById('shuttleInfo').style.display = 'block';
+        });
+
+        function submitRSVP() {
+            const selectedTransport = document.querySelector('#step3 .option-btn.active');
+            if (!selectedTransport) { alert('אנא בחר איך תגיע'); return; }
+            rsvpData.transport = selectedTransport.dataset.value;
+            sendToFormspree(rsvpData);
+            closeModal();
+            document.getElementById('thankYouModal').style.display = 'flex';
+        }
+
+        function sendToFormspree(data) {
+            const formspreeURL = "https://formspree.io/f/xwwwzerd";
+            const formData = new FormData();
+            formData.append("Имя", data.name);
+            formData.append("Присутствие", data.attendance);
+            formData.append("Питание", data.diet);
+            formData.append("Транспорт", data.transport);
+
+            fetch(formspreeURL, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(() => console.log("✅ Данные отправлены"))
+            .catch(err => console.error("Ошибка:", err));
+        }
+
+        function closeModal() { document.getElementById('rsvpModal').style.display = 'none'; }
+        function closeThankYou() { document.getElementById('thankYouModal').style.display = 'none'; }
+
+        function resetForm() {
+            rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+            document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('guestName').value = '';
+            document.getElementById('shuttleInfo').style.display = 'none';
+        }
+
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        sections.forEach(section => observer.observe(section));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
