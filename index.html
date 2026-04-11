@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="heb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia & Klim • 12.08.2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --gold: #d4af77;
+            --soft-pink: #f8e9e0;
+            --dark: #342626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #342626 0%, #3d2f2f 100%);
+            color: #f8e9e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, .date { font-family: 'Great Vibes', cursive; }
+
+        /* ==================== NAV ==================== */
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(52, 38, 38, 0.95);
+            padding: 7px 10px;
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            display: flex;
+            gap: 4px;
+            max-width: 95%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: #f8e9e0;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.93rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover { background: rgba(212, 175, 119, 0.25); color: var(--gold); }
+
+        nav a:last-child {
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+            background: linear-gradient(rgba(52, 38, 38, 0.65), rgba(52, 38, 38, 0.75)),
+                        url('https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/%D1%84%D0%BE%D0%BD.jpeg') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+        .hero .date {
+            font-size: 2.45rem;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 4.1rem;
+            color: var(--gold);
+            margin-bottom: 1.8rem;
+            line-height: 1.05;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 45px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 1.18rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 119, 0.4);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { background: #e5c38a; transform: scale(1.05); }
+
+        section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+
+        .section { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+
+        /* ==================== ИСТОРИЯ ==================== */
+        #story h2 {
+            text-align: center;
+            font-size: 3.2rem;
+            margin-bottom: 3rem;
+            color: var(--gold);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .photo-card {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img { transform: scale(1.08); }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 25px 15px 18px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            text-align: center;
+        }
+
+        .photo-card:hover .photo-overlay { transform: translateY(0); }
+
+        .photo-overlay h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+            color: var(--gold);
+        }
+
+        .photo-overlay p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            opacity: 0.95;
+        }
+
+        /* ==================== DETAILS ==================== */
+        #details {
+            text-align: center;
+        }
+
+        #details h2 {
+            font-size: 4.2rem;
+            margin-bottom: 1.2rem;
+            color: var(--gold);
+        }
+
+        #details .details-text {
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 35px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            margin-bottom: 28px;
+            border: 1px solid rgba(212, 175, 119, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 420px;
+            border: 0;
+            display: block;
+        }
+
+        .waze-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 38px;
+            background: #05c8f7;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(5, 200, 247, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .waze-btn:hover {
+            background: #00b4e0;
+            transform: scale(1.05);
+        }
+
+        .waze-btn svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        /* ==================== RSVP CTA ==================== */
+        .rsvp-cta {
+            text-align: center;
+            padding: 70px 20px;
+            background: #2c1e1e;
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.88);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #2c1e1e;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            width: 92%;
+            max-width: 440px;
+            text-align: center;
+            border: 1px solid var(--gold);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2rem;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: var(--gold); }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0 20px 0;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            background: #3d2a2a;
+            color: white;
+            font-size: 1.05rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus { border-color: #e5c38a; }
+        input[type="text"]::placeholder { color: rgba(248,233,224,0.45); }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 30px 0;
+        }
+
+        .option-btn {
+            padding: 14px;
+            border: 2px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            border-radius: 12px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .option-btn.active, .option-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .submit-btn:hover { background: #e5c38a; transform: scale(1.02); }
+
+        .shuttle-info {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(212,175,119,0.15);
+            border-radius: 12px;
+            border: 1px solid var(--gold);
+            font-size: 1.02rem;
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(212,175,119,0.3);
+            transition: background 0.3s;
+        }
+        .step-dot.active { background: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">עמוד ראשי</a>
+        <a href="#story">ההיסטוריה שלנו</a>
+        <a href="#details">איפה ומתי</a>
+        <a href="#rsvp-section" id="nav-rsvp">לאשר</a>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="date">12.08.2026</p>
+            <h1>Sofia &amp; Klim</h1>
+            <a href="#details" class="btn">לראות את ההזמנה ↓</a>
+        </div>
+    </section>
+
+    <!-- ==================== STORY ==================== -->
+    <section id="story" class="section">
+        <h3>ההיסטוריה שלנו</h3>
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/1%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="הדייט הראשון">
+                <div class="photo-overlay"><h3>הדייט הראשון</h3><p>טיילת של מרכז הארץ ושנינו מטיילים ומדברים על העתיד שלנו</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/2%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="מילואים">
+                <div class="photo-overlay"><h3>מילואים</h3><p>גם במילואים שמרנו על הקשר, ניסינו למצוא זמן איכות גם במצב כזה</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/3%20%D0%BE%D0%B1%D1%80%D0%B5%D0%B7%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F.jpeg" alt="דוגמנים">
+                <div class="photo-overlay"><h3>קשר מרחוק</h3><p>חודש שלם דיברנו רק בפייסטיים ולא ראינו אחד את השניה באמת</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/4.jpeg" alt="Long-distance">
+                <div class="photo-overlay"><h3>פגישה ראשונה</h3><p>פגישה ראשונה אחרי חודש ימים מרגש ברמות</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/5%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="אוגוסט 2025">
+                <div class="photo-overlay"><h3>ערב יחידה</h3><p>בפעם הראשונה היינו באירוע כזה ביחד</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/6%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="ועוד קצת">
+                <div class="photo-overlay"><h3>חוויה בלתי נשכחת</h3><p>היינו בהופעה של מרק אליהו, מוזיקה מטורפת ואנחנו יפים</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/7.PNG" alt="יום מיוחד">
+                <div class="photo-overlay"><h3>תמונות מראה</h3><p>קצת מהתחביבים שלנו עד עכשיו לא פספסנו שום מראה</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/8%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="עוגת ברוכים השבים">
+                <div class="photo-overlay"><h3>קצת בלטמים</h3><p>היינו צריכים לנסוע לעבודה, כל אחד לכיוונו, אבל הרכב של קלים לא התניע, אז נסענו יחד לעבודה עם הרכב של סופיה</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/9%20%D0%BB%D0%B5%D0%B3%D0%BA%D0%B0%D1%8F.jpeg" alt="עוד קצת מהיום שהיא חזרה">
+                <div class="photo-overlay"><h3>חוות סוסים בצפון</h3><p>סופיה אף פעם לא רכבה על סוס, ועל הפעם הראשונה קיבלה סוס מירוצים, קלים כמו רכב מקצועי תמיד היה לידה כדי לשמור אליה</p></div>
+            </div>
+            <div class="photo-card">
+                <img src="https://raw.githubusercontent.com/klimrepa/weddingSofia-Klim/refs/heads/main/images/10.PNG" alt="קצת תמונות במראה">
+                <div class="photo-overlay"><h3>!ההצעה</h3><p>!כולכם חיכיתם לזה והנה זה קורה! סופיה וקלים מתחתנים</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DETAILS ==================== -->
+    <section id="details" class="section">
+        <h2>איפה ומתי</h2>
+        <p class="details-text">12.08.2026 • בני ראם, ישראל<br>אולם נסיה — צומת ראם, כביש 40 וכביש 3</p>
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.5!2d34.7983!3d31.8197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b5b08a6b4c4d%3A0x3e5e4b1e2c7a9b8f!2z157Xqdeq15Eg4oCT157Xotej16kg4oCTINee16DXldeV15Eg15XXkNeV16DXmdeS!5e0!3m2!1siw!2sil!4v1681234567890"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <a href="https://waze.com/ul/hsv8sxtg43"
+           class="waze-btn"
+           target="_blank"
+           rel="noopener noreferrer">
+        
+        </a>
+    </section>
+
+    <!-- ==================== RSVP CTA ==================== -->
+    <div id="rsvp-section" class="rsvp-cta">
+        <button onclick="openRSVP()" class="btn">לאשר הגעה</button>
+    </div>
+
+    <!-- ==================== RSVP MODAL ==================== -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+
+            <!-- Step indicators -->
+            <div class="step-indicator">
+                <div class="step-dot active" id="dot1"></div>
+                <div class="step-dot" id="dot2"></div>
+                <div class="step-dot" id="dot3"></div>
+            </div>
+
+            <!-- Step 1 -->
+            <div id="step1" class="step">
+                <h2 style="color: var(--gold); margin-bottom: 1.2rem;">לאשר הגעה</h2>
+                <input type="text" id="guestName" placeholder="שם מלא (שם + שם משפחה)" autocomplete="off">
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="בטוח אגיע">בטוח אגיע 😊</button>
+                    <button type="button" class="option-btn" data-value="עדיין חושב/ת">עדיין חושב/ת 🤔</button>
+                    <button type="button" class="option-btn" data-value="לא אגיע">לא אגיע 😔</button>
+                </div>
+                <button onclick="nextStep(1)" class="submit-btn">המשך →</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="step" style="display: none;">
+                <h2 style="color: var(--gold); margin-bottom: 1.2rem;">העדפות אוכל</h2>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="צמחוני">אני צמחוני 🥕</button>
+                    <button type="button" class="option-btn" data-value="טבעוני">אני טבעוני 🌱</button>
+                    <button type="button" class="option-btn" data-value="אוכל הכל">אוכל הכל 😋</button>
+                </div>
+                <button onclick="nextStep(2)" class="submit-btn">המשך →</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="step3" class="step" style="display: none;">
+                <h2 style="color: var(--gold); margin-bottom: 1.2rem;">איך תגיע?</h2>
+                <div class="options">
+                    <button type="button" class="option-btn" data-value="עצמאית" id="selfBtn">אני מגיע עצמאית 🚗</button>
+                    <button type="button" class="option-btn" data-value="הסעה" id="shuttleBtn">אני נוסע בהסעה 🚌</button>
+                </div>
+                <div id="shuttleInfo" class="shuttle-info">
+                    <strong>🚌 הסעה יוצאת ממרכבים</strong><br>
+                    בשעה <strong>19:00</strong><br>
+                    <span style="color: #ffcc80;">⚠️ לא לאחר!</span>
+                </div>
+                <button onclick="submitRSVP()" class="submit-btn" style="margin-top: 28px;">שלח תשובה ✓</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== THANK YOU MODAL ==================== -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: var(--gold); font-size: 2.8rem; margin-bottom: 1rem;">תודה רבה! ❤️</h2>
+            <p style="font-size: 1.3rem; line-height: 1.7;">התשובה שלך התקבלה בהצלחה.<br>מחכים לראות אותך בחתונה!</p>
+            <button onclick="closeThankYou()" class="submit-btn" style="margin-top: 2rem;">סגור</button>
+        </div>
+    </div>
+
+    <script>
+        let rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+
+        // ---- Smooth scroll for all anchor links ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ---- Nav RSVP opens form ----
+        document.getElementById('nav-rsvp').addEventListener('click', function(e) {
+            e.preventDefault();
+            openRSVP();
+        });
+
+        // ---- Open / Close modal ----
+        function openRSVP() {
+            resetForm();
+            document.getElementById('rsvpModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('rsvpModal').style.display = 'none';
+        }
+
+        function closeThankYou() {
+            document.getElementById('thankYouModal').style.display = 'none';
+        }
+
+        // Close modal on backdrop click
+        document.getElementById('rsvpModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ---- Reset form completely ----
+        function resetForm() {
+            rsvpData = { name: "", attendance: "", diet: "", transport: "" };
+            document.getElementById('guestName').value = '';
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('shuttleInfo').style.display = 'none';
+            updateDots(1);
+        }
+
+        // ---- Step dots ----
+        function updateDots(step) {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('dot' + i).classList.toggle('active', i === step);
+            }
+        }
+
+        // ---- Option button selection ----
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option-btn')) {
+                const parent = e.target.closest('.options');
+                if (parent) {
+                    parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+
+                // Show/hide shuttle info in step 3
+                if (e.target.id === 'shuttleBtn') {
+                    document.getElementById('shuttleInfo').style.display = 'block';
+                }
+                if (e.target.id === 'selfBtn') {
+                    document.getElementById('shuttleInfo').style.display = 'none';
+                }
+            }
+        });
+
+        // ---- Navigate steps ----
+        function nextStep(step) {
+            if (step === 1) {
+                const name = document.getElementById('guestName').value.trim();
+                const selected = document.querySelector('#step1 .option-btn.active');
+                if (!name) { alert('אנא הכנס/י שם מלא'); return; }
+                if (!selected) { alert('אנא בחר/י אפשרות הגעה'); return; }
+                rsvpData.name = name;
+                rsvpData.attendance = selected.dataset.value;
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+                updateDots(2);
+            } else if (step === 2) {
+                const selected = document.querySelector('#step2 .option-btn.active');
+                if (!selected) { alert('אנא בחר/י העדפת אוכל'); return; }
+                rsvpData.diet = selected.dataset.value;
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+                updateDots(3);
+            }
+        }
+
+        // ---- Submit ----
+        function submitRSVP() {
+            const selected = document.querySelector('#step3 .option-btn.active');
+            if (!selected) { alert('אנא בחר/י איך תגיע/י'); return; }
+            rsvpData.transport = selected.dataset.value;
+            sendToFormspree(rsvpData);
+            closeModal();
+            document.getElementById('thankYouModal').style.display = 'flex';
+        }
+
+        function sendToFormspree(data) {
+            const formspreeURL = "https://formspree.io/f/xwwwzerd";
+            const formData = new FormData();
+            formData.append("שם", data.name);
+            formData.append("הגעה", data.attendance);
+            formData.append("אוכל", data.diet);
+            formData.append("תחבורה", data.transport);
+            fetch(formspreeURL, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(() => console.log("✅ Данные отправлены"))
+            .catch(err => console.error("Ошибка:", err));
+        }
+
+        // ---- Scroll animations ----
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
+        sections.forEach(s => observer.observe(s));
+
+        // ---- Init: make sure modals are hidden ----
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('rsvpModal').style.display = 'none';
+            document.getElementById('thankYouModal').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
