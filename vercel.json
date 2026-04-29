@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/klim-sofia/index.html"
+      "source": "/(.*)",
+      "destination": "/klim-sofia/$1"
     }
   ]
 }
